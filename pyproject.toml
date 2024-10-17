@@ -1,0 +1,41 @@
+[project]
+name = "langchain-dg-prompt-protection"
+version = "1.0.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "click>=8.1.7",
+    "langchain-openai>=0.2.2",
+    "langchain>=0.3.3",
+    "pangea-sdk",
+    "pydantic>=2.9.2",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "mypy>=1.12.0",
+    "ruff>=0.6.9",
+]
+
+[tool.uv.sources]
+pangea-sdk = { git = "https://github.com/pangeacyber/pangea-python", subdirectory = "packages/pangea-sdk", branch = "kenany/guards" }
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    # ruff defaults
+    "E4",
+    "E7",
+    "E9",
+    "F",
+
+    "I",   # isort
+    "PTH", # flake8-use-pathlib
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
