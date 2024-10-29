@@ -477,7 +477,7 @@ dependencies = [
     { name = "pydantic" },
 ]
 
-[package.dependency-groups]
+[package.dev-dependencies]
 dev = [
     { name = "mypy" },
     { name = "ruff" },
@@ -488,11 +488,11 @@ requires-dist = [
     { name = "click", specifier = ">=8.1.7" },
     { name = "langchain", specifier = ">=0.3.4" },
     { name = "langchain-openai", specifier = ">=0.2.3" },
-    { name = "pangea-sdk", git = "https://github.com/pangeacyber/pangea-python?subdirectory=packages%2Fpangea-sdk&branch=kenany%2Fguards" },
+    { name = "pangea-sdk", specifier = "==5.2.0b1" },
     { name = "pydantic", specifier = ">=2.9.2" },
 ]
 
-[package.metadata.dependency-groups]
+[package.metadata.requires-dev]
 dev = [
     { name = "mypy", specifier = ">=1.13.0" },
     { name = "ruff", specifier = ">=0.7.1" },
@@ -681,8 +681,8 @@ wheels = [
 
 [[package]]
 name = "pangea-sdk"
-version = "5.1.0"
-source = { git = "https://github.com/pangeacyber/pangea-python?subdirectory=packages%2Fpangea-sdk&branch=kenany%2Fguards#3c12359f182a3fb2c6c17037cdf2e03c93eea76a" }
+version = "5.2.0b1"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "cryptography" },
@@ -693,6 +693,10 @@ dependencies = [
     { name = "requests" },
     { name = "requests-toolbelt" },
     { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7c/ac/aab711d1650de7e147f08f5ba2b0611ddf0c976c04774b8e3a22bccbc17f/pangea_sdk-5.2.0b1.tar.gz", hash = "sha256:e2abaf224b2aadcf03e315b0273329e3de3d77bf9bc0983b051d4081d3841fcf", size = 124419 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/85/c3/5e6ac1b866fa87ab54268e56c206e189e2450a4c28e5ad940e27e1ef4347/pangea_sdk-5.2.0b1-py3-none-any.whl", hash = "sha256:6087c3af3fc613b06262d4c9c463ecc0f25efb7b181e2692ce97948630cefb1a", size = 150203 },
 ]
 
 [[package]]

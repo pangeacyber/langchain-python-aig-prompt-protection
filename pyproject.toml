@@ -9,7 +9,7 @@ dependencies = [
     "click>=8.1.7",
     "langchain-openai>=0.2.3",
     "langchain>=0.3.4",
-    "pangea-sdk",
+    "pangea-sdk==5.2.0b1",
     "pydantic>=2.9.2",
 ]
 
@@ -18,9 +18,6 @@ dev-dependencies = [
     "mypy>=1.13.0",
     "ruff>=0.7.1",
 ]
-
-[tool.uv.sources]
-pangea-sdk = { git = "https://github.com/pangeacyber/pangea-python", subdirectory = "packages/pangea-sdk", branch = "kenany/guards" }
 
 [tool.ruff]
 line-length = 120
