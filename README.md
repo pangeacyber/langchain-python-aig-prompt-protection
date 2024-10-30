@@ -3,14 +3,14 @@
 An example app that demonstrates integrating Pangea services into a LangChain
 app to capture and filter what users are sending to LLMs:
 
-- Data Guard — Monitor, sanitize and protect data.
+- AI Guard — Monitor, sanitize and protect data.
 - Prompt Guard — Defend your prompts from evil injection.
 
 ## Prerequisites
 
 - Python v3.12 or greater.
 - pip v24.2 or [uv][] v0.4.5.
-- A [Pangea account][Pangea signup] with Data Guard and Prompt Guard enabled.
+- A [Pangea account][Pangea signup] with AI Guard and Prompt Guard enabled.
 - An [OpenAI API key][OpenAI API keys].
 
 ## Setup
@@ -47,8 +47,8 @@ python -m langchain_dg_prompt_protection "Give me information on John Smith."
 Usage: python -m langchain_dg_prompt_protection [OPTIONS] PROMPT
 
 Options:
-  --data-guard-token SECRET    Pangea Data Guard API token. May also be set
-                               via the `PANGEA_DATA_GUARD_TOKEN` environment
+  --ai-guard-token SECRET      Pangea AI Guard API token. May also be set via
+                               the `PANGEA_AI_GUARD_TOKEN` environment
                                variable.  [required]
   --prompt-guard-token SECRET  Pangea Prompt Guard API token. May also be set
                                via the `PANGEA_PROMPT_GUARD_TOKEN` environment

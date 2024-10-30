@@ -6,29 +6,29 @@ from langchain_core.messages import HumanMessage
 from langchain_core.prompt_values import PromptValue
 from langchain_core.runnables import RunnableConfig, RunnableSerializable
 from pangea import PangeaConfig
-from pangea.services import DataGuard
+from pangea.services import AIGuard
 from pydantic import SecretStr
 
-__all__ = ["PangeaDataGuard"]
+__all__ = ["PangeaAIGuard"]
 
 
-class PangeaDataGuard(RunnableSerializable[PromptValue, PromptValue]):
+class PangeaAIGuard(RunnableSerializable[PromptValue, PromptValue]):
     """
-    Runnable that uses Pangea's Data Guard service to monitor, sanitize, and
+    Runnable that uses Pangea's AI Guard service to monitor, sanitize, and
     protect data.
     """
 
-    _client: DataGuard
+    _client: AIGuard
 
     def __init__(self, *, token: SecretStr, domain: str = "aws.us.pangea.cloud") -> None:
         """
         Args:
-            token: Pangea Data Guard API token.
+            token: Pangea AI Guard API token.
             domain: Pangea API domain.
         """
 
         super().__init__()
-        self._client = DataGuard(token=token.get_secret_value(), config=PangeaConfig(domain=domain))
+        self._client = AIGuard(token=token.get_secret_value(), config=PangeaConfig(domain=domain))
 
     @override
     def invoke(self, input: PromptValue, config: RunnableConfig | None = None, **kwargs: Any) -> PromptValue:
@@ -39,7 +39,7 @@ class PangeaDataGuard(RunnableSerializable[PromptValue, PromptValue]):
         text = latest_human_message.content
         assert isinstance(text, str)
 
-        # Run it through Data Guard.
+        # Run it through AI Guard.
         guarded = self._client.guard_text(text)
         assert guarded.result
 

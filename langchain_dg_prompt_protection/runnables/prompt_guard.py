@@ -78,7 +78,7 @@ class PangeaPromptGuard(RunnableSerializable[PromptValue, PromptValue]):
     def invoke(self, input: PromptValue, config: RunnableConfig | None = None, **kwargs: Any) -> PromptValue:
         response = self._client.guard([_convert_message(message) for message in input.to_messages()])
         assert response.result
-        if response.result.prompt_injection_detected:
+        if response.result.detected:
             raise MaliciousPromptError(to_json(response.result).decode("utf-8"))
 
         return input
