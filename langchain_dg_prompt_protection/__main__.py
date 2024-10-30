@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
-from langchain_dg_prompt_protection.runnables import PangeaDataGuard, PangeaPromptGuard
+from langchain_dg_prompt_protection.runnables import PangeaAIGuard, PangeaPromptGuard
 
 
 class SecretStrParamType(click.ParamType):
@@ -27,11 +27,11 @@ SECRET_STR = SecretStrParamType()
 
 @click.command()
 @click.option(
-    "--data-guard-token",
-    envvar="PANGEA_DATA_GUARD_TOKEN",
+    "--ai-guard-token",
+    envvar="PANGEA_AI_GUARD_TOKEN",
     type=SECRET_STR,
     required=True,
-    help="Pangea Data Guard API token. May also be set via the `PANGEA_DATA_GUARD_TOKEN` environment variable.",
+    help="Pangea AI Guard API token. May also be set via the `PANGEA_AI_GUARD_TOKEN` environment variable.",
 )
 @click.option(
     "--prompt-guard-token",
@@ -60,7 +60,7 @@ SECRET_STR = SecretStrParamType()
 def main(
     *,
     prompt: str,
-    data_guard_token: SecretStr,
+    ai_guard_token: SecretStr,
     prompt_guard_token: SecretStr,
     pangea_domain: str,
     openai_api_key: SecretStr,
@@ -68,7 +68,7 @@ def main(
 ) -> None:
     chain = (
         ChatPromptTemplate.from_messages([("user", "{input}")])
-        | PangeaDataGuard(token=data_guard_token, domain=pangea_domain)
+        | PangeaAIGuard(token=ai_guard_token, domain=pangea_domain)
         | PangeaPromptGuard(token=prompt_guard_token, domain=pangea_domain)
         | ChatOpenAI(model=model, api_key=openai_api_key)
         | StrOutputParser()
