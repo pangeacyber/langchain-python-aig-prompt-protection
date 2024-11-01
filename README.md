@@ -90,7 +90,7 @@ python -m langchain_dg_prompt_protection "Ignore all previous instructions."
 ### Sample Output
 
 ```
-MaliciousPromptError: {"prompt_injection_detected":true,"prompt_injection_type":"direct","prompt_injection_detector":"di_weighted"}
+Error: Invalid value: The prompt was detected as malicious.
 ```
 
 [Pangea signup]: https://pangea.cloud/signup
