@@ -9,6 +9,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
 from langchain_dg_prompt_protection.runnables import PangeaAIGuard, PangeaPromptGuard
+from langchain_dg_prompt_protection.runnables.prompt_guard import MaliciousPromptError
 
 
 class SecretStrParamType(click.ParamType):
@@ -73,7 +74,11 @@ def main(
         | ChatOpenAI(model=model, api_key=openai_api_key)
         | StrOutputParser()
     )
-    click.echo(chain.invoke({"input": prompt}))
+
+    try:
+        click.echo(chain.invoke({"input": prompt}))
+    except MaliciousPromptError:
+        raise click.BadParameter("The prompt was detected as malicious.")
 
 
 if __name__ == "__main__":
