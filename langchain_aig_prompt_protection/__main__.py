@@ -8,8 +8,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
-from langchain_dg_prompt_protection.runnables import PangeaAIGuard, PangeaPromptGuard
-from langchain_dg_prompt_protection.runnables.prompt_guard import MaliciousPromptError
+from langchain_aig_prompt_protection.runnables import PangeaAIGuard, PangeaPromptGuard
+from langchain_aig_prompt_protection.runnables.prompt_guard import MaliciousPromptError
 
 
 class SecretStrParamType(click.ParamType):

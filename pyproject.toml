@@ -1,5 +1,5 @@
 [project]
-name = "langchain-dg-prompt-protection"
+name = "langchain-aig-prompt-protection"
 version = "1.0.0"
 description = ""
 readme = "README.md"
