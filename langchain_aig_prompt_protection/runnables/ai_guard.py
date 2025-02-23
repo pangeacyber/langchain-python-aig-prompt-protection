@@ -43,7 +43,7 @@ class PangeaAIGuard(RunnableSerializable[PromptValue, PromptValue]):
         guarded = self._client.guard_text(text)
         assert guarded.result
 
-        if guarded.result.redacted_prompt:
-            latest_human_message.content = guarded.result.redacted_prompt
+        if guarded.result.prompt_text:
+            latest_human_message.content = guarded.result.prompt_text
 
         return input
